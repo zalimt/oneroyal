@@ -127,3 +127,81 @@ function create_careers_post_type() {
 
 add_action('init', 'create_careers_post_type');
 
+/**
+ * TranslatePress Language Switcher Toggle
+ */
+function translatepress_language_switcher_toggle() {
+    ?>
+    <script>
+    jQuery(document).ready(function($) {
+        console.log('TranslatePress toggle script loaded');
+        
+        // Function to close language switcher
+        function closeLangSwitcher() {
+            var $trpSwitcher = $('.trp-language-switcher.trp-language-switcher-container');
+            if ($trpSwitcher.length === 0) {
+                $trpSwitcher = $('.trp-language-switcher');
+            }
+            
+            if ($trpSwitcher.length > 0 && $trpSwitcher.hasClass('active')) {
+                $trpSwitcher.removeClass('active');
+                console.log('Language switcher closed');
+            }
+        }
+        
+        // Toggle active class on trp-language-switcher when lang-switcher-toggle is clicked
+        $(document).on('click', '#lang-switcher-toggle', function(e) {
+            console.log('Lang switcher toggle clicked');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Find the trp-language-switcher with trp-language-switcher-container class
+            var $trpSwitcher = $('.trp-language-switcher.trp-language-switcher-container');
+            
+            if ($trpSwitcher.length > 0) {
+                $trpSwitcher.toggleClass('active');
+                console.log('Toggled active class on trp-language-switcher-container');
+                console.log('Current classes:', $trpSwitcher.attr('class'));
+            } else {
+                console.log('trp-language-switcher-container not found');
+                
+                // Fallback: try just .trp-language-switcher
+                var $fallbackSwitcher = $('.trp-language-switcher');
+                if ($fallbackSwitcher.length > 0) {
+                    $fallbackSwitcher.toggleClass('active');
+                    console.log('Toggled active class on .trp-language-switcher (fallback)');
+                }
+            }
+            
+            return false;
+        });
+        
+        // Close language switcher when clicking outside
+        $(document).on('click', function(e) {
+            var $target = $(e.target);
+            
+            // Check if click is outside the language switcher area
+            if (!$target.closest('.mobile-lang-switcher').length && 
+                !$target.closest('#lang-switcher-toggle').length &&
+                !$target.closest('.trp-language-switcher').length) {
+                closeLangSwitcher();
+            }
+        });
+        
+        // Prevent clicks inside the language switcher from closing it
+        $(document).on('click', '.mobile-lang-switcher, .trp-language-switcher', function(e) {
+            e.stopPropagation();
+        });
+        
+        // Debug: log what elements we can find
+        console.log('lang-switcher-toggle elements found:', $('#lang-switcher-toggle').length);
+        console.log('trp-language-switcher-container elements found:', $('.trp-language-switcher.trp-language-switcher-container').length);
+        console.log('trp-language-switcher elements found:', $('.trp-language-switcher').length);
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'translatepress_language_switcher_toggle');
+
+
+

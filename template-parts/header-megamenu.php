@@ -3,7 +3,11 @@
         <section>
             <nav class="megamenu">
                 <a href="<?php echo localePath('/'); ?>" class="oneroyal-logo"></a>
-                <ul class="menu">
+                
+                <!-- Include Mobile Header -->
+                <?php get_template_part('template-parts/mobile-header'); ?>
+                
+                <ul class="menu desktop-menu">
                     <li class="menu-item">
                         <a href="#" class="menu-item-title t-16 fw-500">Trade</a>
                         <div class="submenu">
