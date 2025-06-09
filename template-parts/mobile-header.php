@@ -23,7 +23,7 @@ function create_mobile_menu_item($url, $icon, $title, $isExternal = false) {
     
     // Handle icon - check if it's an image path or CSS class
     if (strpos($icon, '/') !== false || strpos($icon, 'http') !== false) {
-        $iconHtml = '<img src="' . get_template_directory_uri() . $icon . '" alt="' . $title . '" class="mobile-menu-icon">';
+        $iconHtml = '<img src="' . get_stylesheet_directory_uri() . $icon . '" alt="' . $title . '" class="mobile-menu-icon">';
     } else {
         $iconHtml = '<div class="header-icon ' . $icon . '"></div>';
     }
@@ -222,17 +222,10 @@ function create_mobile_menu_item($url, $icon, $title, $isExternal = false) {
 
         <!-- Mobile Navigation Footer -->
         <div class="mobile-nav-footer">
-            <div class="mobile-auth-buttons">
+            <div class="mobile-footer-buttons">
                 <a href="#" class="btn btn-tertiary btn-sm btn-plain no-icon">Log In</a>
                 <a href="#" class="btn btn-primary btn-sm btn-plain no-icon">Sign Up</a>
-            </div>
-            <div class="mobile-utilities">
-                <div class="mobile-lang-switcher">
-                    <div id="lang-switcher-toggle">
-                        <?php echo do_shortcode('[language-switcher]'); ?>
-                    </div>
-                </div>
-                <a href="//oneroyal.academy/faqs" class="mobile-faq-btn">FAQ</a>
+                <a href="//oneroyal.academy/faqs" class="header-btn-faq mobile-faq-btn"></a>
             </div>
         </div>
     </div>

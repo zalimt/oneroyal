@@ -395,10 +395,10 @@ html[data-theme="dark"] {
                 padding: 20px;
                 border-top: 1px solid $neutral-200;
 
-                .mobile-auth-buttons {
+                .mobile-footer-buttons {
                     display: flex;
                     gap: 12px;
-                    margin-bottom: 16px;
+                    align-items: center;
 
                     .btn {
                         flex: 1;
@@ -431,25 +431,63 @@ html[data-theme="dark"] {
                             }
                         }
                     }
-                }
 
-                .mobile-utilities {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .mobile-lang-switcher {
-                        font-size: 14px;
-                        color: $body-l;
-                    }
-
-                    .mobile-faq-btn {
-                        font-size: 14px;
-                        color: $fg-button-link-2-l;
-                        text-decoration: none;
+                    .header-btn-lang {
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 6px;
+                        border: 1px solid $neutral-300;
+                        flex-shrink: 0;
+                        transition: all 0.2s ease;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
 
                         &:hover {
-                            color: $fg-button-link-1-hover-l;
+                            background-color: $bg-secondary-l;
+                        }
+
+                        // Hide the language switcher dropdown by default on desktop
+                        .trp-language-switcher {
+                            .trp-ls-shortcode-language {
+                                display: none;
+                            }
+                        }
+
+                        // Show dropdown when opened
+                        &.opened {
+                            .trp-language-switcher {
+                                .trp-ls-shortcode-language {
+                                    display: block;
+                                    position: absolute;
+                                    top: 100%;
+                                    left: 0;
+                                    background: white;
+                                    border: 1px solid $neutral-300;
+                                    border-radius: 6px;
+                                    z-index: 1000;
+                                    min-width: 120px;
+                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    .header-btn-faq {
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 6px;
+                        border: 1px solid $neutral-300;
+                        background: url('/images/icons/header-btn-faq.svg') center center no-repeat;
+                        background-size: 20px 20px;
+                        flex-shrink: 0;
+                        transition: all 0.2s ease;
+
+                        &:hover {
+                            background-color: $bg-secondary-l;
                         }
                     }
                 }
@@ -473,7 +511,6 @@ html[data-theme="dark"] {
                     display: none;
                 }
 
-                .header-btn-lang,
                 .header-btn-faq,
                 #theme-toggle {
                     display: block;
@@ -685,7 +722,7 @@ html[data-theme="dark"] {
             .mobile-nav-footer {
                 border-top: 1px solid $neutral-200;
 
-                .mobile-auth-buttons {
+                .mobile-footer-buttons {
                     .btn {
                         &.btn-tertiary {
                             color: $fg-button-link-2-d;
@@ -696,18 +733,15 @@ html[data-theme="dark"] {
                             }
                         }
                     }
-                }
 
-                .mobile-utilities {
-                    .mobile-lang-switcher {
-                        color: $body-d;
-                    }
-
-                    .mobile-faq-btn {
-                        color: $fg-button-link-2-d;
+                    .header-btn-faq {
+                        border: 1px solid $neutral-300;
+                        background: url('/images/icons/header-btn-faq-d.svg') center center no-repeat;
+                        background-size: 20px 20px;
 
                         &:hover {
-                            color: $fg-button-link-1-hover-d;
+                            background-color: $bg-secondary-l;
+                            background-image: url('/images/icons/header-btn-faq-d.svg');
                         }
                     }
                 }
